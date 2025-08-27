@@ -5,6 +5,13 @@ spring:
     name: gateway
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        - RequestSize=10MB
+        - Retry=5,series=SERVER_ERROR,methods=GET
+        - CircuitBreaker=name=cbDefault,fallbackUri=forward:/__fallback
+        - RemoveRequestHeader=Cookie
+        - AddResponseHeader=X-Gateway,msa-skeleton
       routes:
         - id: userdemo
           uri: lb://service-userdemo
@@ -14,6 +21,14 @@ spring:
           uri: lb://service-order
           predicates:
             - Path=/orders/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+
 eureka:
   client:
     register-with-eureka: true
@@ -25,3 +40,4 @@ management:
     web:
       exposure:
         include: health,info
+
