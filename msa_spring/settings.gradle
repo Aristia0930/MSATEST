@@ -1,0 +1,2 @@
+rootProject.name = 'msa_spring'
+include 'business1-service','business2-service','common-starter','discovery-server','gateway'
