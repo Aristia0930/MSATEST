@@ -1,0 +1,5 @@
+rootProject.name = 'msa-skeleton'
+include('service-order')
+include('service-userdemo')
+include('discovery')
+include('gateway')
