@@ -12,3 +12,7 @@ eureka:
 jwt:
   secret: "u1Lx0aU3C8Y4p8y1Zr8H3m0l9Q6t2V5s0x2T6k9A3p1L7r4W8d3K2v9N6q5B1c2"
   access-exp-minutes: 30
+
+common:
+  security:
+    enabled: false

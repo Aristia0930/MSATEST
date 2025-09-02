@@ -1,0 +1,24 @@
+plugins {
+    id 'java-library'
+}
+
+repositories { mavenCentral() }   // ★ 누락되어 있으면 의존성 못 가져옵니다
+
+dependencies {
+    // ★ Spring Boot BOM으로 버전 정렬
+    api platform("org.springframework.boot:spring-boot-dependencies:3.5.5")
+
+    api "org.springframework.boot:spring-boot-starter-security"
+    api "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
+
+    // 선택: @ConfigurationProperties 메타데이터
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+}
+
+// IntelliJ 경고 피하고 싶으면 유지, 아니면 삭제해도 무방
+tasks.register("prepareKotlinBuildScriptModel") { }
+tasks.register("wrapper") { }

@@ -7,3 +7,15 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+common:
+  security:
+    permit-paths:
+      - /docs/**
+      - /public/**
+      - /users/open/**
+    hmac-secret: ${JWT_SECRET:u1Lx0aU3C8Y4p8y1Zr8H3m0l9Q6t2V5s0x2T6k9A3p1L7r4W8d3K2v9N6q5B1c2}
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG
